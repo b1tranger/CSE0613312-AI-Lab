@@ -110,6 +110,59 @@ if __name__ == '__main__':
 https://www.geeksforgeeks.org/python/python-program-for-depth-first-search-or-dfs-for-a-graph/
 
 ```py
+
+# Let’s define this decision tree explicitly in Python as a dictionary.
+# Define the decision tree as a dictionary
+tree = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F', 'G'],
+    'D': ['H', 'I'],
+    'E': ['J', 'K'],
+    'F': ['L', 'M'],
+    'G': ['N', 'O'],
+    'H': [], 'I': [], 'J': [], 'K': [],
+    'L': [], 'M': [], 'N': [], 'O': []
+}
+
+
+# DFS is often implemented recursively. 
+# At each node, DFS calls itself on its child nodes until there are no more to visit, 
+# and then it backtracks. Here is a recursive DFS function to traverse the tree.
+# Recursive DFS function
+def dfs_recursive(tree, node, visited=None):
+    if visited is None:
+        visited = set()  # Initialize the visited set
+    visited.add(node)    # Mark the node as visited
+    print(node)          # Print the current node (for illustration)
+    for child in tree[node]:  # Recursively visit children
+        if child not in visited:
+            dfs_recursive(tree, child, visited)
+
+# Run DFS starting from node 'A'
+dfs_recursive(tree, 'A')
+
+# OUTPUT
+# A
+# B
+# D
+# H
+# I
+# E
+# J
+# K
+# C
+# F
+# L
+# M
+# G
+# N
+# O
+```
+
+
+
+```py
 from collections import defaultdict
 
 # This class represents a directed graph using
