@@ -1,1 +1,2 @@
 *.ini
+/project/__pycache__
