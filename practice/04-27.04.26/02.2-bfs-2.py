@@ -20,3 +20,5 @@ def bfs(graph,node):
 
 
 bfs(graph,0)
+
+# {0, 1, 2, 3}

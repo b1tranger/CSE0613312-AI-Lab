@@ -16,3 +16,24 @@ if ci_c == "yes":
     print(f"Compund interest is = {A-p}")
 else:
     print("Okay")
+
+
+
+# Enter principle: 1000
+# Enter rate: 5
+# Enter time: 2
+
+
+
+
+# principle = 1000.0
+# rate = 5.0
+# time = 2.0
+
+
+
+
+# Amount is = 1102.5
+# See compund interest amount?
+# Enter yes or no: yes
+# Compund interest is = 102.5

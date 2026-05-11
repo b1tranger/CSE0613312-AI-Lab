@@ -8,3 +8,6 @@ print(li)
 heapq.heappush(li, 100)
 
 print(li)
+
+# [1, 2, 3, 6, 5, 10]
+# [1, 2, 3, 6, 5, 10, 100]

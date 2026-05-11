@@ -24,3 +24,6 @@ def bfs(graph,node):
     print(visited)
 
 bfs(graph,0)
+
+
+# {0, 1, 2, 3}

@@ -17,3 +17,15 @@ print(A[:])
 print(A[1:])
 print(A[::2])
 print(C[::-1])
+
+
+# () (1, 2, 3, 4, 5) (5, 'Welcome', 7.5, True, [1, 2, 3], {'key': 'value'})
+
+# ('Welcome', 7.5, True)
+
+# 5
+
+# ()
+# ()
+# ()
+# ({'key': 'value'}, [1, 2, 3], True, 7.5, 'Welcome', 5)

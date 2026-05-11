@@ -35,3 +35,12 @@ def dfs(graph,node,visited=None):
 
 
 dfs(graph,start)
+
+
+# A
+# B
+# D
+# H
+# I
+
+# destination found

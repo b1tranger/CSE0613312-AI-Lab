@@ -31,3 +31,9 @@ def greedy_best_first(graph, start, goal, h):
 
 # Execution based on sample data [27]
 greedy_best_first(graph, 'S', 'G', h)
+
+
+# Visited: S
+# Visited: B
+# Visited: D
+# Goal reached: G

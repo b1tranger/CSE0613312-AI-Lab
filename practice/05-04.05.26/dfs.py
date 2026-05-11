@@ -15,3 +15,11 @@ def dfs(graph, vertex):
 
 # Output: A B D E F C
 dfs(graph, 'A')
+
+
+# A
+# B
+# D
+# E
+# F
+# C
