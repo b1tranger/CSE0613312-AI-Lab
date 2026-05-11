@@ -160,6 +160,49 @@ dfs_recursive(tree, 'A')
 # O
 ```
 
+```py
+# Graph represent korar jonno dictionary (Adjacency List)
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F', 'G'],
+    'D': ['H'],
+    'E': [],
+    'F': [],
+    'G': [],
+    'H': ['I'],
+    'I': []
+}
+
+def dfs_search(graph, start, goal):
+    stack = [start]  # DFS er jonno Stack bebohar kora hoy
+    visited = []     # Jei node gulo visit kora hoyeche
+
+    while stack:
+        node = stack.pop()  # Sobcheye deep node-ti ber kora (LIFO)
+        
+        if node not in visited:
+            visited.append(node)
+            print(f"Visiting node: {node}")
+
+            # Target/Goal node peye gele loop bondho hobe
+            if node == goal:
+                print(f"Goal node '{goal}' found!")
+                return visited
+
+            # Bachader stack-e push kora (Reverse e jate Left side age check hoy)
+            for neighbor in reversed(graph[node]):
+                if neighbor not in visited:
+                    stack.append(neighbor)
+    
+    return visited
+
+# Algorithm run kora
+path = dfs_search(graph, 'A', 'I')
+print("Full Search Path:", " -> ".join(path))
+```
+
+
 
 
 ```py
