@@ -88,3 +88,27 @@ This script implements an "Avoid-3" variant on a larger 4x4 board. Forming 3-in-
 - **`best_ai_move(board)`**: Iterates over valid moves, scoring them via `minimax()`, and returns the best move for the AI.
 - **`decode_result(result, board)`**: Translates terminal state string codes (like `"X_LOSS"`) into readable text and score summaries.
 - **`play_game()`**: Manages the main game loop, displaying the board and toggling turns.
+
+---
+
+## 4. `inv_tictactoe_vs_player.py`
+
+This script implements an "Avoid-3" variant on a larger 4x4 board for two human players. It is the multiplayer version of the Avoid-3 game.
+
+### **Code Flow**
+1. `play_game()` initializes the game. Player 1 (`"X"`) plays against Player 2 (`"O"`).
+2. The turn loop begins. Each player is prompted to enter a move via `get_player_move()`.
+3. After every move, `check_terminal()` evaluates if the move caused an instant loss (3-in-a-row) or if the board is full.
+4. If terminal, `decode_result()` translates the outcome into a user-friendly message and the game ends.
+
+### **Key Variables**
+- **`BOARD_SIZE`**: Set to 16 for the 4x4 grid.
+- **`LOSS_LINES`**: Contains all possible 3-consecutive lines on a 4x4 board (rows, columns, and diagonals).
+
+### **Functions**
+- **`has_instant_loss(board, player)`**: Scans `LOSS_LINES` to check if a player just formed a 3-in-a-row, returning `True` if they did (meaning they lose).
+- **`count_unmatched(board, player)`**: When the board is full, this counts how many tiles a player has that are NOT part of any 3-consecutive line.
+- **`check_terminal(board, last_player)`**: Determines if the game has ended, either through an instant loss by the `last_player` or because the board is full.
+- **`get_player_move(board, player)`**: Prompts the current player to input a valid cell index.
+- **`decode_result(result, board)`**: Translates terminal state string codes (like `"X_LOSS"`) into readable text and score summaries for a 2-player match.
+- **`play_game()`**: Manages the main game loop, displaying the board and toggling turns between Player 1 and Player 2.
