@@ -17,9 +17,9 @@ Rules (inverted from classic Tic-Tac-Toe):
 
 import math
 
-# ─────────────────────────────────────────────────────────────
+
 # Game Configuration
-# ─────────────────────────────────────────────────────────────
+
 
 BOARD_SIZE         = 16    # 4×4 board
 MAX_DEPTH          = 6     # depth limit for minimax
@@ -45,9 +45,9 @@ LOSS_LINES = [
     (6, 9, 12),  (7, 10, 13),
 ]
 
-# ─────────────────────────────────────────────────────────────
+
 # Board Utilities
-# ─────────────────────────────────────────────────────────────
+
 
 def create_board():
     return [" "] * BOARD_SIZE
@@ -70,9 +70,9 @@ def print_board(board):
 def get_available_moves(board):
     return [i for i, v in enumerate(board) if v == " "]
 
-# ─────────────────────────────────────────────────────────────
+
 # Terminal State Detection
-# ─────────────────────────────────────────────────────────────
+
 
 def has_instant_loss(board, player):
     for a, b, c in LOSS_LINES:
@@ -105,9 +105,9 @@ def check_terminal(board, last_player):
 def is_terminal(board, last_player):
     return check_terminal(board, last_player) is not None
 
-# ─────────────────────────────────────────────────────────────
+
 # Heuristic Evaluation & Minimax (AI Only)
-# ─────────────────────────────────────────────────────────────
+
 
 def count_near_loss_lines(board, player):
     count = 0
@@ -177,9 +177,9 @@ def best_ai_move(board):
             best_move  = move
     return best_move
 
-# ─────────────────────────────────────────────────────────────
+
 # Game Loop
-# ─────────────────────────────────────────────────────────────
+
 
 def get_player_move(board, prompt):
     available = [str(m + 1) for m in get_available_moves(board)]

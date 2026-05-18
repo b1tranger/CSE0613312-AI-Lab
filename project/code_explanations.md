@@ -112,3 +112,37 @@ This script implements an "Avoid-3" variant on a larger 4x4 board for two human 
 - **`get_player_move(board, player)`**: Prompts the current player to input a valid cell index.
 - **`decode_result(result, board)`**: Translates terminal state string codes (like `"X_LOSS"`) into readable text and score summaries for a 2-player match.
 - **`play_game()`**: Manages the main game loop, displaying the board and toggling turns between Player 1 and Player 2.
+
+
+---
+
+## 5. `inv_tictactoe.py`
+
+This script implements an "Avoid-3" variant on a 4x4 board, featuring both Human vs. AI and 2-Player (Human vs. Human) modes. Forming 3-in-a-row loses the game immediately. If the board fills up without any instant losses, the player with the most unmatched tiles (tiles not part of any 3-consecutive line) wins. The AI uses a depth-limited Minimax algorithm with a custom heuristic evaluation.
+
+### **Code Flow**
+1. `main()` presents an interactive menu allowing the user to select either "Play vs AI", "Play vs Human (2 Player)", or "Quit".
+2. Based on the choice, `play_game(vs_ai)` initializes the game. It displays the rules and the board.
+3. The turn loop begins. For a human turn, `get_player_move()` prompts for a valid cell index. For an AI turn, `best_ai_move()` determines the optimal move using Minimax.
+4. Due to the 4x4 board complexity, `minimax()` is restricted by `MAX_DEPTH`. If the search reaches this depth without finding a terminal state, it relies on `heuristic_score()`.
+5. After every move, `check_terminal()` evaluates if the move caused an instant loss (3-in-a-row) or if the board is full.
+6. If the game is terminal, `decode_result()` translates the outcome into a user-friendly message, displays the final unmatched tiles count, and the game loop breaks, returning to the main menu.
+
+### **Key Variables**
+- **`BOARD_SIZE`**: Set to 16 for the 4x4 grid.
+- **`MAX_DEPTH`**: Set to 6. Prevents the Minimax algorithm from taking too long by limiting how many turns ahead it explores.
+- **`LOSS_LINES`**: Contains all possible 3-consecutive lines on a 4x4 board (rows, columns, and diagonals). Note that there are sliding windows because a single 4-cell line contains two overlapping 3-cell sequences.
+- **`INSTANT_LOSS_SCORE`** / **`BOARD_FULL_SCORE`**: Constants used in Minimax to heavily weight instant outcomes over heuristic tie-breakers.
+
+### **Functions**
+- **`has_instant_loss(board, player)`**: Scans `LOSS_LINES` to check if a player just formed a 3-in-a-row, returning `True` if they did (meaning they lose).
+- **`count_unmatched(board, player)`**: When the board is full, this counts how many tiles a player has that are NOT part of any 3-consecutive line.
+- **`check_terminal(board, last_player)`**: Determines if the game has ended, returning string flags (e.g., `"X_LOSS"`, `"O_WIN"`, `"Draw"`) based on instant loss or full-board conditions.
+- **`count_near_loss_lines(board, player)`**: Scans the board for lines that have 2 of the player's tiles and 1 empty space. These represent high-danger zones.
+- **`heuristic_score(board)`**: Used when Minimax reaches `MAX_DEPTH`. It calculates a score based on the difference in unmatched tiles and the difference in "danger zones" between the AI and Human.
+- **`minimax(board, depth, is_maximizing, last_player, alpha, beta)`**: A depth-limited version of Minimax using Alpha-Beta pruning. It evaluates terminal states (accounting for depth to prioritize faster wins/slower losses) and falls back to `heuristic_score()` at the depth limit.
+- **`best_ai_move(board)`**: Iterates over valid moves, scoring them via `minimax()`, and returns the best move for the AI.
+- **`decode_result(result, board, vs_ai)`**: Translates terminal state string codes into readable text and score summaries, dynamically adjusting the text depending on whether the game was against the AI or another player.
+- **`play_game(vs_ai)`**: Manages the main game loop, displaying the board, and toggling turns.
+- **`main()`**: Displays the main menu and handles game mode selection and replay logic.
+
